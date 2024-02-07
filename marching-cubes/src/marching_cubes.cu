@@ -90,7 +90,7 @@ class MarchingCubes : public rclcpp::Node {
     m_markerMessage.id = 1;
     m_markerMessage.type = visualization_msgs::msg::Marker::TRIANGLE_LIST;
     m_markerMessage.action = visualization_msgs::msg::Marker::ADD;
-    m_markerMessage.header.frame_id = "map";
+    m_markerMessage.header.frame_id = "world";
     m_markerMessage.scale.x = 1.0f;
     m_markerMessage.scale.y = 1.0f;
     m_markerMessage.scale.z = 1.0f;
@@ -98,9 +98,9 @@ class MarchingCubes : public rclcpp::Node {
     m_markerMessage.color.g = 0.5f;
     m_markerMessage.color.b = 0.0f;
     m_markerMessage.color.a = 1.0f;
-    m_markerMessage.pose.position.x = 0.0f;
-    m_markerMessage.pose.position.y = 0.0f;
-    m_markerMessage.pose.position.z = 0.0f;
+    m_markerMessage.pose.position.x = 1.0f;
+    m_markerMessage.pose.position.y = -0.5 * size * y_count;
+    m_markerMessage.pose.position.z = -1.0f;
 
     m_size = size;
     m_cubeCount.x = x_count;
