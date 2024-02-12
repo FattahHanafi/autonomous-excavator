@@ -3,7 +3,8 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    return LaunchDescription([
+    return LaunchDescription(
+        [
             Node(
                 package="bounding-box",
                 executable="bounding_box",
@@ -30,11 +31,34 @@ def generate_launch_description():
             ),
             Node(
                 package="bounding-box",
-                executable="closest_distance",
+                executable="bounding_box",
                 name="h3",
                 parameters=[
-                    {"source": "Human_1"},
+                    {"title": "Excavator"},
+                    {"motion": 0},
+                    {"frame_id": "boom"},
+                    {"size_x": 3.0},
+                    {"size_y": 2.0},
+                    {"size_z": 2.0},
+                ],
+            ),
+            Node(
+                package="bounding-box",
+                executable="closest_distance",
+                name="h4",
+                parameters=[
+                    {"source": "Excavator"},
+                    {"target_1": "Human_1"},
+                ],
+            ),
+            Node(
+                package="bounding-box",
+                executable="closest_distance",
+                name="h5",
+                parameters=[
+                    {"source": "Excavator"},
                     {"target_1": "Car_1"},
                 ],
             ),
-        ])
+        ]
+    )
