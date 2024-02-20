@@ -16,7 +16,10 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(visualization_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(CGAL REQUIRED)
 
 add_executable(bounding_box src/bounding_box.cpp)
 target_include_directories(bounding_box PUBLIC
@@ -28,7 +31,7 @@ add_executable(closest_distance src/closest_distance.cpp)
 target_include_directories(closest_distance PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(closest_distance rclcpp visualization_msgs geometry_msgs tf2_geometry_msgs)
+ament_target_dependencies(closest_distance rclcpp visualization_msgs geometry_msgs tf2 tf2_ros tf2_geometry_msgs CGAL)
 
 install(TARGETS
   bounding_box

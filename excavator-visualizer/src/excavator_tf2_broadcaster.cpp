@@ -22,9 +22,7 @@ class FramePublisher : public rclcpp::Node {
 
  private:
   void make_transforms(sensor_msgs::msg::JointState::SharedPtr msg) {
-    rclcpp::Time now = this->get_clock()->now();
-
-    m_TransformStamped.header.stamp = now;
+    m_TransformStamped.header.stamp = this->get_clock()->now();
 
     m_TransformStamped.header.frame_id = "world";
     m_TransformStamped.child_frame_id = "container";

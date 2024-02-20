@@ -140,7 +140,7 @@ class MarchingCubes : public rclcpp::Node {
     updateMessage();
     auto end = std::chrono::steady_clock::now();
     auto dur = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-    RCLCPP_INFO(this->get_logger(), "%f took %ld ms, total triangles : %ld", m_totalVolume, dur, m_markerMessage.points.size());
+    // RCLCPP_INFO(this->get_logger(), "%f took %ld ms, total triangles : %ld", m_totalVolume, dur, m_markerMessage.points.size());
   };
 
   void updateVolumes() {

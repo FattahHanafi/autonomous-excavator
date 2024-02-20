@@ -9,20 +9,12 @@ from launch_ros.actions import Node
 
 
 def to_urdf(xacro_path, parameters=None):
-    """Convert the given xacro file to URDF file.
-    * xacro_path -- the path to the xacro file
-    * parameters -- to be used when xacro file is parsed.
-    """
     urdf_path = tempfile.mktemp(prefix="%s_" % os.path.basename(xacro_path))
-    print("Hi2")
     # open and process file
     doc = xacro.process_file(xacro_path, mappings=parameters)
-    print("Hi3")
     # open the output file
     out = xacro.open_output(urdf_path)
-    print("Hi4")
     out.write(doc.toprettyxml(indent="  "))
-    print("Hi5")
 
     return urdf_path
 
@@ -35,7 +27,6 @@ xacro_path = os.path.join(
     "urdf",
     "electrical_excavator.urdf.xacro",
 )
-print("Hi")
 urdf = to_urdf(xacro_path, {"use_nominal_extrinsics": "true", "add_plug": "true"})
 rviz = os.path.join(
     get_package_share_directory("excavator-visualizer"), "config", rviz_file_name
