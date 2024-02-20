@@ -104,7 +104,7 @@ class ClosestDistance : public rclcpp::Node {
     float theta = time.seconds() - m_startTime.seconds();
     if (this->get_parameter("motion").as_int() == 1) {
       pose.position.x = 3.0 + 0.5 * cos(theta);
-      pose.position.y = -2.0 + 1.0 * sin(theta);
+      pose.position.y = -3.0 + 2.5 * sin(theta);
       pose.position.z = 0.5 * m_size.z;
     } else if (this->get_parameter("motion").as_int() == 2) {
       pose.position.x = 6.0;
