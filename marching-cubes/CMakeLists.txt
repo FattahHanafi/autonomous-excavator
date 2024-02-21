@@ -16,6 +16,9 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(visualization_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 find_package(CUDA REQUIRED)
 include_directories(${CUDA_INCLUDE_DIRS})
 link_directories(${CUDA_LIBRARY_DIRS})
@@ -24,7 +27,7 @@ cuda_add_executable(marching_cubes src/marching_cubes.cu)
 target_include_directories(marching_cubes PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(marching_cubes rclcpp visualization_msgs geometry_msgs)
+ament_target_dependencies(marching_cubes rclcpp visualization_msgs geometry_msgs tf2 tf2_ros tf2_geometry_msgs)
 
 install(TARGETS
   marching_cubes

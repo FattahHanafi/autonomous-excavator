@@ -5,6 +5,15 @@
   <xacro:include filename="_materials.urdf.xacro" />
 
   <link name="world" />
+
+  <link name="container" />
+
+  <joint name="Container" type="fixed">
+    <axis xyz="0.0 0.0 1.0" />
+    <origin xyz="0.0 -2.0 -0.75" rpy="0 0 0" />
+    <parent link="world"/>
+    <child link="container"/>
+  </joint>
   
   <link name="base">
     <visual>

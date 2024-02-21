@@ -23,8 +23,6 @@ class ClosestDistance : public rclcpp::Node {
     auto target_3 = this->get_parameter("target_3").as_string();
     auto target_4 = this->get_parameter("target_4").as_string();
 
-    RCLCPP_INFO(this->get_logger(), "Started!");
-
     m_tfBuffer = std::make_unique<tf2_ros::Buffer>(this->get_clock());
     m_tfListener = std::make_shared<tf2_ros::TransformListener>(*m_tfBuffer);
 
