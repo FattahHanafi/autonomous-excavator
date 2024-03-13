@@ -5,7 +5,10 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-      Splitter Ratio: 0.5015243887901306
+        - /Obstacles1/Zed1
+        - /Distances1/Base1
+        - /Distances1/Base1/Status1
+      Splitter Ratio: 0.3826219439506531
     Tree Height: 1128
   - Class: rviz_common/Selection
     Name: Selection
@@ -26,7 +29,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: PointCloud2
 Visualization Manager:
   Class: ""
   Displays:
@@ -111,6 +114,14 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        container:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        map:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         swing:
           Alpha: 1
           Show Axes: false
@@ -128,33 +139,107 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        Camera_Bucket_link:
+          Value: true
+        Camera_Container_link:
+          Value: true
+        arm:
+          Value: true
+        base:
+          Value: true
+        boom:
+          Value: true
+        bucket:
+          Value: true
+        cam_bracket:
+          Value: true
+        cam_bucket_bracket:
+          Value: true
+        cam_container_bracket:
+          Value: true
+        cam_container_pose:
+          Value: true
+        container:
+          Value: true
+        map:
+          Value: true
+        odom:
+          Value: true
+        swing:
+          Value: true
+        world:
+          Value: true
+        zed_camera_center:
+          Value: true
+        zed_camera_link:
+          Value: true
+        zed_imu_link:
+          Value: true
+        zed_left_camera_frame:
+          Value: true
+        zed_left_camera_optical_frame:
+          Value: true
+        zed_right_camera_frame:
+          Value: true
+        zed_right_camera_optical_frame:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          base:
+            swing:
+              boom:
+                arm:
+                  bucket:
+                    {}
+                  cam_bracket:
+                    cam_bucket_bracket:
+                      Camera_Bucket_link:
+                        {}
+                    cam_container_bracket:
+                      cam_container_pose:
+                        Camera_Container_link:
+                          {}
+          container:
+            {}
+          map:
+            odom:
+              zed_camera_link:
+                zed_camera_center:
+                  zed_left_camera_frame:
+                    zed_imu_link:
+                      {}
+                    zed_left_camera_optical_frame:
+                      {}
+                  zed_right_camera_frame:
+                    zed_right_camera_optical_frame:
+                      {}
+      Update Interval: 0
+      Value: true
     - Class: rviz_common/Group
       Displays:
         - Class: rviz_default_plugins/MarkerArray
           Enabled: true
-          Name: Car
+          Name: Zed
           Namespaces:
-            {}
+            Body_85: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
             History Policy: Keep Last
             Reliability Policy: Reliable
-            Value: /boundingBox/Car_1
+            Value: /boundingBox/zed
           Value: true
-        - Class: rviz_default_plugins/MarkerArray
-          Enabled: true
-          Name: Human
-          Namespaces:
-            {}
-          Topic:
-            Depth: 5
-            Durability Policy: Volatile
-            History Policy: Keep Last
-            Reliability Policy: Reliable
-            Value: /boundingBox/Human_1
-          Value: true
-      Enabled: false
+      Enabled: true
       Name: Obstacles
     - Class: rviz_common/Group
       Displays:
@@ -162,7 +247,7 @@ Visualization Manager:
           Enabled: true
           Name: Bucket
           Namespaces:
-            {}
+            Excavator_bucket: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -174,7 +259,7 @@ Visualization Manager:
           Enabled: true
           Name: Boom
           Namespaces:
-            {}
+            Excavator_boom: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -186,7 +271,7 @@ Visualization Manager:
           Enabled: true
           Name: Arm
           Namespaces:
-            {}
+            Excavator_arm: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -198,7 +283,7 @@ Visualization Manager:
           Enabled: true
           Name: Base
           Namespaces:
-            {}
+            Excavator_base: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -210,7 +295,7 @@ Visualization Manager:
           Enabled: true
           Name: Swing
           Namespaces:
-            {}
+            Excavator_swing: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -218,7 +303,7 @@ Visualization Manager:
             Reliability Policy: Reliable
             Value: /boundingBox/Excavator_swing
           Value: true
-      Enabled: false
+      Enabled: true
       Name: Boundary Boxes
     - Class: rviz_common/Group
       Displays:
@@ -226,7 +311,7 @@ Visualization Manager:
           Enabled: true
           Name: Base
           Namespaces:
-            {}
+            disExcavator_base: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -238,7 +323,7 @@ Visualization Manager:
           Enabled: true
           Name: Swing
           Namespaces:
-            {}
+            disExcavator_swing: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -250,7 +335,7 @@ Visualization Manager:
           Enabled: true
           Name: Boom
           Namespaces:
-            {}
+            disExcavator_boom: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -262,7 +347,7 @@ Visualization Manager:
           Enabled: true
           Name: Arm
           Namespaces:
-            {}
+            disExcavator_arm: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -274,7 +359,7 @@ Visualization Manager:
           Enabled: true
           Name: Bucket
           Namespaces:
-            {}
+            disExcavator_bucket: true
           Topic:
             Depth: 5
             Durability Policy: Volatile
@@ -282,7 +367,7 @@ Visualization Manager:
             Reliability Policy: Reliable
             Value: /distance/Excavator_bucket
           Value: true
-      Enabled: false
+      Enabled: true
       Name: Distances
     - Class: rviz_default_plugins/MarkerArray
       Enabled: false
@@ -296,6 +381,40 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /marchingCubes
       Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 1
+      Size (m): 0.009999999776482582
+      Style: Points
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /zed/zed_node/point_cloud/cloud_registered
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -342,25 +461,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 10
+      Distance: 4.82059907913208
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -0.28192123770713806
+        Y: -0.22302132844924927
+        Z: -0.007853953167796135
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6953982710838318
+      Pitch: 0.4253987967967987
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.655400514602661
+      Yaw: 2.2872185707092285
     Saved: ~
 Window Geometry:
   Displays:

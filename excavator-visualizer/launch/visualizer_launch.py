@@ -61,27 +61,7 @@ def generate_launch_description():
             ),
             Node(
                 package="bounding-box",
-                executable="bounding_box",
-                name="h1",
-                parameters=[
-                    {"title": "Human_1"},
-                    {"motion": 1},
-                    {"size_x": 0.5},
-                    {"size_y": 0.5},
-                    {"size_z": 2.0},
-                ],
-            ),
-            Node(
-                package="bounding-box",
-                executable="bounding_box",
-                name="h2",
-                parameters=[
-                    {"title": "Car_1"},
-                    {"motion": 2},
-                    {"size_x": 2.0},
-                    {"size_y": 5.0},
-                    {"size_z": 1.5},
-                ],
+                executable="zed_bounding_box",
             ),
             Node(
                 package="bounding-box",
@@ -158,8 +138,7 @@ def generate_launch_description():
                 name="d1",
                 parameters=[
                     {"source": "Excavator_base"},
-                    {"target_1": "Human_1"},
-                    {"target_2": "Car_1"},
+                    {"target_1": "zed"},
                 ],
             ),
             Node(
@@ -168,8 +147,7 @@ def generate_launch_description():
                 name="d2",
                 parameters=[
                     {"source": "Excavator_swing"},
-                    {"target_1": "Human_1"},
-                    {"target_2": "Car_1"},
+                    {"target_1": "zed"},
                 ],
             ),
             Node(
@@ -178,8 +156,7 @@ def generate_launch_description():
                 name="d3",
                 parameters=[
                     {"source": "Excavator_boom"},
-                    {"target_1": "Human_1"},
-                    {"target_2": "Car_1"},
+                    {"target_1": "zed"},
                 ],
             ),
             Node(
@@ -188,8 +165,7 @@ def generate_launch_description():
                 name="d4",
                 parameters=[
                     {"source": "Excavator_arm"},
-                    {"target_1": "Human_1"},
-                    {"target_2": "Car_1"},
+                    {"target_1": "zed"},
                 ],
             ),
             Node(
@@ -198,8 +174,7 @@ def generate_launch_description():
                 name="d5",
                 parameters=[
                     {"source": "Excavator_bucket"},
-                    {"target_1": "Human_1"},
-                    {"target_2": "Car_1"},
+                    {"target_1": "zed"},
                 ],
             ),
             Node(

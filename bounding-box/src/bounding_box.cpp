@@ -4,7 +4,7 @@
 using namespace std::chrono_literals;
 
 class ClosestDistance : public rclcpp::Node {
- public:
+public:
   ClosestDistance() : Node("bounding_box_node") {
     this->declare_parameter("title", "box");
     this->declare_parameter("frame_id", "world");
@@ -24,8 +24,11 @@ class ClosestDistance : public rclcpp::Node {
     this->declare_parameter("color_a", 0.3f);
     this->declare_parameter("motion", 0);
 
-    m_timer = this->create_wall_timer(100ms, std::bind(&ClosestDistance::posePublisher, this));
-    m_boxPublisher = this->create_publisher<visualization_msgs::msg::MarkerArray>("boundingBox/" + this->get_parameter("title").as_string(), 10);
+    m_timer = this->create_wall_timer(
+        100ms, std::bind(&ClosestDistance::posePublisher, this));
+    m_boxPublisher =
+        this->create_publisher<visualization_msgs::msg::MarkerArray>(
+            "boundingBox/" + this->get_parameter("title").as_string(), 10);
     m_startTime = this->get_clock()->now();
     m_size.x = this->get_parameter("size_x").as_double();
     m_size.y = this->get_parameter("size_y").as_double();
@@ -40,12 +43,17 @@ class ClosestDistance : public rclcpp::Node {
 
     m_boundaryBoxArray.markers.resize(2);
 
-    m_boundaryBoxArray.markers.at(1).header.frame_id = this->get_parameter("frame_id").as_string();
-    m_boundaryBoxArray.markers.at(1).ns = this->get_parameter("title").as_string();
+    m_boundaryBoxArray.markers.at(1).header.frame_id =
+        this->get_parameter("frame_id").as_string();
+    m_boundaryBoxArray.markers.at(1).ns =
+        this->get_parameter("title").as_string();
     m_boundaryBoxArray.markers.at(1).id = 1;
-    m_boundaryBoxArray.markers.at(1).action = visualization_msgs::msg::Marker::MODIFY;
-    m_boundaryBoxArray.markers.at(1).type = visualization_msgs::msg::Marker::TEXT_VIEW_FACING;
-    m_boundaryBoxArray.markers.at(1).text = this->get_parameter("title").as_string();
+    m_boundaryBoxArray.markers.at(1).action =
+        visualization_msgs::msg::Marker::MODIFY;
+    m_boundaryBoxArray.markers.at(1).type =
+        visualization_msgs::msg::Marker::TEXT_VIEW_FACING;
+    m_boundaryBoxArray.markers.at(1).text =
+        this->get_parameter("title").as_string();
 
     m_boundaryBoxArray.markers.at(1).color.r = 1.0f;
     m_boundaryBoxArray.markers.at(1).color.g = 1.0f;
@@ -55,16 +63,24 @@ class ClosestDistance : public rclcpp::Node {
     m_boundaryBoxArray.markers.at(1).scale.y = 0.1f;
     m_boundaryBoxArray.markers.at(1).scale.z = 0.1f;
 
-    m_boundaryBoxArray.markers.at(0).set__header(m_boundaryBoxArray.markers.at(1).header);
-    m_boundaryBoxArray.markers.at(0).set__pose(m_boundaryBoxArray.markers.at(1).pose);
-    m_boundaryBoxArray.markers.at(0).color.r = this->get_parameter("color_r").as_double();
-    m_boundaryBoxArray.markers.at(0).color.g = this->get_parameter("color_g").as_double();
-    m_boundaryBoxArray.markers.at(0).color.b = this->get_parameter("color_b").as_double();
-    m_boundaryBoxArray.markers.at(0).color.a = this->get_parameter("color_a").as_double();
+    m_boundaryBoxArray.markers.at(0).set__header(
+        m_boundaryBoxArray.markers.at(1).header);
+    m_boundaryBoxArray.markers.at(0).set__pose(
+        m_boundaryBoxArray.markers.at(1).pose);
+    m_boundaryBoxArray.markers.at(0).color.r =
+        this->get_parameter("color_r").as_double();
+    m_boundaryBoxArray.markers.at(0).color.g =
+        this->get_parameter("color_g").as_double();
+    m_boundaryBoxArray.markers.at(0).color.b =
+        this->get_parameter("color_b").as_double();
+    m_boundaryBoxArray.markers.at(0).color.a =
+        this->get_parameter("color_a").as_double();
     m_boundaryBoxArray.markers.at(0).ns = m_boundaryBoxArray.markers.at(1).ns;
     m_boundaryBoxArray.markers.at(0).id = 0;
-    m_boundaryBoxArray.markers.at(0).type = visualization_msgs::msg::Marker::CUBE;
-    m_boundaryBoxArray.markers.at(0).action = visualization_msgs::msg::Marker::ADD;
+    m_boundaryBoxArray.markers.at(0).type =
+        visualization_msgs::msg::Marker::CUBE;
+    m_boundaryBoxArray.markers.at(0).action =
+        visualization_msgs::msg::Marker::ADD;
     m_boundaryBoxArray.markers.at(0).set__scale(m_size);
 
     m_boundaryBoxArray.markers.at(0).points.resize(8);
@@ -128,14 +144,15 @@ class ClosestDistance : public rclcpp::Node {
   };
 
   visualization_msgs::msg::MarkerArray m_boundaryBoxArray;
-  rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr m_boxPublisher;
+  rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr
+      m_boxPublisher;
   rclcpp::TimerBase::SharedPtr m_timer;
   geometry_msgs::msg::Vector3 m_size;
   geometry_msgs::msg::Pose m_pose;
   rclcpp::Time m_startTime;
 };
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
   rclcpp::spin(std::make_shared<ClosestDistance>());
   rclcpp::shutdown();
